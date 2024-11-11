@@ -85,7 +85,6 @@ const handleNewsletterSubmit = () => {
     </section>
   </div>
 
-
   <!-- Promotional Banner -->
   <section class="bg-[#75574e] text-white py-12">
       <div class="container mx-auto px-4 text-center">
@@ -120,7 +119,7 @@ const handleNewsletterSubmit = () => {
       <div class="container mx-auto px-4">
         <h2 class="text-3xl font-bold text-center">Featured Products</h2>
         <p class="text-xl text-[gray] text-center mb-12">Our Bestselling, popular and new Arrivals!</p>
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 cursor-pointer">
           <div v-for="product in featuredProducts" :key="product.id" 
                class="bg-[#f6f4ec] rounded-lg shadow-md p-4 overflow-hidden transition-transform hover:scale-105">
             <div class="relative">
@@ -152,7 +151,7 @@ const handleNewsletterSubmit = () => {
         </div>
         
         <form @submit.prevent="handleNewsletterSubmit" 
-              class="w-full md:w-auto flex flex-col sm:flex-row gap-8">
+              class="w-full md:w-auto flex flex-col sm:flex-row gap-5">
           <input 
             type="email" 
             v-model="emailAddress"
