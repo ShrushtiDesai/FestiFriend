@@ -3,19 +3,9 @@ import Autoplay from 'embla-carousel-autoplay'
 import Button from '@/components/ui/button/Button.vue'
 import { ref } from 'vue'
 
-import BlackKandi from '@/assets/images/Products/BlackKandi.webp'
 import BlueKandi from '@/assets/images/Products/BlueKandi.jpg'
 import PinkKandi from '@/assets/images/Products/PinkKandi.webp'
-import YellowKandi from '@/assets/images/Products/YellowKandi.webp'
 import MeshCommunicator from '@/assets/images/Products/MeshCommunicator.webp'
-
-const plugin = Autoplay({
-  delay: 2000,
-  stopOnMouseEnter: true,
-  stopOnInteraction: false,
-})
-
-const imagesURL = [BlackKandi, BlueKandi, PinkKandi, YellowKandi, MeshCommunicator];
 
 const featuredProducts = [
   {
@@ -145,27 +135,6 @@ const handleNewsletterSubmit = () => {
               <Button class="w-full">Add to Cart</Button>
             </div>
           </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Newsletter Section -->
-    <section class="py-16 bg-[#74b8bb]">
-      <div class="container mx-auto px-4 max-w-2xl text-center">
-        <h2 class="text-3xl font-bold mb-4">Stay Connected</h2>
-        <p class="text-gray-600 mb-8">
-          Subscribe to our newsletter for exclusive offers, new products, and festival tips!
-        </p>
-        <div class="flex gap-4 max-w-md mx-auto">
-          <Input
-            v-model="email"
-            type="email"
-            placeholder="Enter your email"
-            class="flex-1"
-          />
-          <Button @click="subscribeNewsletter">
-            Subscribe
-          </Button>
         </div>
       </div>
     </section>
