@@ -1,11 +1,10 @@
 <script setup>
-import Autoplay from 'embla-carousel-autoplay'
 import Button from '@/components/ui/button/Button.vue'
 import { ref } from 'vue'
 
-import BlueKandi from '@/assets/images/Products/BlueKandi.jpg'
-import PinkKandi from '@/assets/images/Products/PinkKandi.webp'
-import MeshCommunicator from '@/assets/images/Products/MeshCommunicator.webp'
+import BlueKandi from '@/assets/images/Products/BlueKandi/BlueKandi1.jpg'
+import PinkKandi from '@/assets/images/Products/PinkKandi/PinkKandi1.webp'
+import MeshCommunicator from '@/assets/images/Products/MeshCom/MeshCommunicator1.webp'
 
 const featuredProducts = [
   {
