@@ -1,4 +1,8 @@
+import Login from '@/auth/Login/Login.vue'
+import Register from '@/auth/Register/Register.vue'
 import AboutView from '@/views/AboutView.vue'
+import CartPage from '@/views/CartPage.vue'
+import ContactPage from '@/views/ContactPage.vue'
 import HomeView from '@/views/HomeView.vue'
 import ShopView from '@/views/ShopView.vue'
 import SingleProduct from '@/views/SingleProduct.vue'
@@ -22,7 +26,7 @@ const router = createRouter({
     {
       path: '/contact',
       name: 'Contact',
-      component: HomeView
+      component: ContactPage
     },
     {
       path: '/shop',
@@ -32,12 +36,7 @@ const router = createRouter({
     {
       path: '/cart',
       name: 'Cart',
-      component: AboutView
-    },
-    {
-      path: '/account',
-      name: 'Account',
-      component: AboutView
+      component: CartPage
     },
     {
       path: '/pages/festifriend-privacy-policy',
@@ -62,6 +61,16 @@ const router = createRouter({
         id: parseInt(route.params.id),
         name: route.query.name
       })
+    },
+    {
+      path: '/auth/login',
+      name: 'Login',
+      component: Login
+    },
+    {
+      path: '/auth/register',
+      name: 'Register',
+      component: Register
     }
   ]
 })

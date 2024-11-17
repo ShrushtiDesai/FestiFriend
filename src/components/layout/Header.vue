@@ -43,7 +43,7 @@ function closeSidebar() {
           <div style="cursor: pointer;">
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: rgba(0, 0, 0, 1);"><path d="M10 18a7.952 7.952 0 0 0 4.897-1.688l4.396 4.396 1.414-1.414-4.396-4.396A7.952 7.952 0 0 0 18 10c0-4.411-3.589-8-8-8s-8 3.589-8 8 3.589 8 8 8zm0-14c3.309 0 6 2.691 6 6s-2.691 6-6 6-6-2.691-6-6 2.691-6 6-6z"></path></svg>
           </div>
-            <RouterLink to="/account"><svg  xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: rgba(0, 0, 0, 1);"><path d="M12 2a5 5 0 1 0 5 5 5 5 0 0 0-5-5zm0 8a3 3 0 1 1 3-3 3 3 0 0 1-3 3zm9 11v-1a7 7 0 0 0-7-7h-4a7 7 0 0 0-7 7v1h2v-1a5 5 0 0 1 5-5h4a5 5 0 0 1 5 5v1z"></path></svg>
+            <RouterLink to="/auth/login"><svg  xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: rgba(0, 0, 0, 1);"><path d="M12 2a5 5 0 1 0 5 5 5 5 0 0 0-5-5zm0 8a3 3 0 1 1 3-3 3 3 0 0 1-3 3zm9 11v-1a7 7 0 0 0-7-7h-4a7 7 0 0 0-7 7v1h2v-1a5 5 0 0 1 5-5h4a5 5 0 0 1 5 5v1z"></path></svg>
             </RouterLink>
             <RouterLink to="/cart"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: rgba(0, 0, 0, 1);"><path d="M21 4H2v2h2.3l3.28 9a3 3 0 0 0 2.82 2H19v-2h-8.6a1 1 0 0 1-.94-.66L9 13h9.28a2 2 0 0 0 1.92-1.45L22 5.27A1 1 0 0 0 21.27 4 .84.84 0 0 0 21 4zm-2.75 7h-10L6.43 6h13.24z"></path><circle cx="10.5" cy="19.5" r="1.5"></circle><circle cx="16.5" cy="19.5" r="1.5"></circle></svg></RouterLink>
         </div>
@@ -72,7 +72,7 @@ function closeSidebar() {
 
         <ul v-if="isSidebarOpen === 1" class="sidebar">
           <li><RouterLink to="/" class="pagelink" exact-active-class="router-link-active" @click="closeSidebar">Home</RouterLink></li>
-          <li><RouterLink to="/account" class="pagelink" active-class="router-link-active" @click="closeSidebar">Account</RouterLink></li>
+          <li><RouterLink to="/auth/login" class="pagelink" active-class="router-link-active" @click="closeSidebar">Account</RouterLink></li>
           <li><RouterLink to="/shop" class="pagelink" active-class="router-link-active" @click="closeSidebar">Shop</RouterLink></li>
           <li><RouterLink to="/about" class="pagelink" active-class="router-link-active" @click="closeSidebar">About</RouterLink></li>
           <li><RouterLink to="/contact" class="pagelink" active-class="router-link-active" @click="closeSidebar">Contact</RouterLink></li>
