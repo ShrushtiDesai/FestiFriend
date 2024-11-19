@@ -1,53 +1,39 @@
-// // store/cart.js
-// import { defineStore } from 'pinia';
-// import { ref } from 'vue';
+import { defineStore } from 'pinia'
 
-// export const useCartStore = defineStore('cart', () => {
-//   const cartItems = ref([
-//     {
-//       id: 1,
-//       name: 'Basic Tee',
-//       price: 32.00,
-//       quantity: 1,
-//       image: '/tee-sienna.jpg',
-//     }
-//   ]);
-
-//   const addToCart = (product) => {
-//     const existingProduct = cartItems.value.find(item => item.id === product.id);
-//     if (existingProduct) {
-//       existingProduct.quantity += 1;
-//     } else {
-//       cartItems.value.push({ ...product, quantity: 1 });
-//     }
-//   };
-
-//   return { cartItems, addToCart };
-// });
-
-import { defineStore } from 'pinia';
-import { ref } from 'vue';
-
-export const useCartStore = defineStore('cart', () => {
-  const cartItems = ref([
-    {
-      id: 1,
-      name: 'Basic Tee',
-      price: 32.00,
-      quantity: 1,
-      image: '/tee-sienna.jpg',
+export const useCartStore = defineStore('cart', {
+  state: () => ({
+    cartItems: []
+  }),
+  actions: {
+    addToCart(product) {
+      const existingItem = this.cartItems.find(item => item.id === product.id)
+      
+      if (existingItem) {
+        existingItem.quantity += product.quantity
+      } else {
+        this.cartItems.push(product)
+      }
+    },
+    removeFromCart(productId) {
+      this.cartItems = this.cartItems.filter(item => item.id !== productId)
+    },
+    updateQuantity(productId, quantity) {
+      const item = this.cartItems.find(item => item.id === productId)
+      if (item) {
+        item.quantity = parseInt(quantity)
+      }
     }
-  ]);
-
-  const addToCart = (product) => {
-    const existingProduct = cartItems.value.find(item => item.id === product.id);
-    if (existingProduct) {
-      existingProduct.quantity += product.quantity; // Add selected quantity to the existing product
-    } else {
-      cartItems.value.push({ ...product, quantity: product.quantity });
+  },
+  getters: {
+    totalItems: (state) => state.cartItems.reduce((total, item) => total + item.quantity, 0),
+    subtotal: (state) => state.cartItems.reduce((total, item) => total + (item.price * item.quantity), 0),
+    shippingEstimate: () => 5.00,
+    taxEstimate: (state) => state.cartItems.reduce((total, item) => total + (item.price * item.quantity), 0) * 0.084,
+    orderTotal: (state) => {
+      const subtotal = state.cartItems.reduce((total, item) => total + (item.price * item.quantity), 0)
+      const shipping = 5.00
+      const tax = subtotal * 0.084
+      return subtotal + shipping + tax
     }
-  };
-
-  return { cartItems, addToCart };
-});
-
+  }
+})

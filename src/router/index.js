@@ -1,6 +1,6 @@
 import Login from '@/auth/Login/Login.vue'
 import Register from '@/auth/Register/Register.vue'
-import AboutView from '@/views/AboutView.vue'
+import AboutView from '@/views/AboutPage/AboutView.vue'
 import CartPage from '@/views/CartPage.vue'
 import ContactPage from '@/views/ContactPage.vue'
 import HomeView from '@/views/HomeView.vue'

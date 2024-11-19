@@ -1,8 +1,10 @@
 <script setup>
   import { Card, CardContent } from '@/components/ui/card'
   import { Carousel, CarouselContent, CarouselItem } from '@/components/ui/carousel'
+  import { useToast } from '@/components/ui/toast';
+  import Toaster from '@/components/ui/toast/Toaster.vue';
   import { watchOnce } from '@vueuse/core'
-  import { ref, onMounted } from 'vue';
+  import { ref } from 'vue';
   import { useRoute } from 'vue-router';
   import Button from '@/components/ui/button/Button.vue'
   import { useCartStore } from '@/stores/cart';
@@ -31,6 +33,8 @@
   const route = useRoute();
   const productId = Number(route.params.id);
   const productName = route.query.name;
+
+  const  { toast }  = useToast();
 
   const products = ref([
   {
@@ -101,13 +105,45 @@
 
   ]);
 
+  const cartStore = useCartStore();
   const product = ref(products.value.find(p => p.id === productId));
 
-  const emblaMainApi = ref(null)
-  const emblaThumbnailApi = ref(null)
-  const selectedIndex = ref(0)
+  const emblaMainApi = ref(null);
+  const emblaThumbnailApi = ref(null);
+  const selectedIndex = ref(0);
   // const selectedSize = ref('')
-  const quantity = ref(1) || 0
+  const quantity = ref(1);
+  
+  const incrementQuantity = () => {
+  quantity.value++
+  }
+
+  const decrementQuantity = () => {
+    if (quantity.value > 1) {
+      quantity.value--
+    }
+  }
+
+  const addToCart = () => {
+  const cartItem = {
+    id: product.value.id, 
+    name: product.value.name,
+    price: product.value.price,
+    quantity: quantity.value,
+    image: product.value.images[0]  
+  };
+
+    cartStore.addToCart(cartItem);
+    
+    toast({
+    variant: 'success',
+    title: 'Item Added to Cart',
+    description: `${quantity.value} ${product.value.name}(s) have been added to your cart.`,
+  });
+  quantity.value = 1;
+
+    console.log('Cart items after adding:', cartStore.cartItems);
+  };
 
   function onSelect() {
     if (!emblaMainApi.value || !emblaThumbnailApi.value) return
@@ -129,7 +165,8 @@
 </script>
 
 <template>
-  <div class="product-page flex flex-col bg-[#caf0f8]" v-if="product">
+  <Toaster></Toaster>
+  <div class="product-page flex flex-col bg-[#f6fff8]" v-if="product">
     <div class="top-div flex flex-wrap max-w-[1300px] mx-auto p-6">
       <!-- Left side - Image Gallery -->
       <div class="top-div-left flex-1 min-w-[320px]">
@@ -183,22 +220,29 @@
           <h1 class="text-3xl font-bold text-gray-900 mb-4">{{ product.name }}</h1>
           <p class="text-2xl font-semibold text-[#2a9d8f] mb-6">${{ product.price.toFixed(2) }}</p>
 
-          <!-- Size Selector -->
           <div class="mb-6">
           </div>
-          <!-- Quantity -->
-          <div class="mb-6">
-            <label for="quantity" class="block text-lg font-medium text-gray-700 mb-2">Quantity</label>
-            <input
-              type="number"
-              id="quantity"
-              v-model="quantity"
-              min="1"
-              class="w-32 border border-gray-300 rounded-md py-2 px-3 focus:outline-none focus:ring-2 focus:ring-yellow-600"
-            />
+          <div class="flex items-center space-x-4 my-6">
+          <span class="text-gray-700">Quantity:</span>
+          <div class="flex items-center bg-white border border-gray-300 rounded">
+            <button
+              @click="decrementQuantity"
+              class="px-3 py-2 bg-gray-200 hover:bg-gray-100"
+              :disabled="quantity <= 1"
+            >
+              −
+            </button>
+            <span class="px-4 py-2 text-center min-w-[3rem]">{{ quantity }}</span>
+            <button
+              @click="incrementQuantity"
+              class="px-3 py-2 bg-gray-200 hover:bg-gray-100"
+            >
+              +
+               </button>
+            </div>
           </div>
 
-          <Button class="w-full mb-8 p-6 bg-[#0077b6] text-white hover:bg-[#023e8a]" size="lg" @click="handleAddToCart">
+          <Button class="w-full mb-8 bg-[#4f772d] text-white py-6 px-6 rounded-lg font-medium hover:bg-[#90a955] transition duration-200 transform hover:scale-[1.01]" size="lg" @click="addToCart">
             Add to Cart
           </Button>
 
