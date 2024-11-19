@@ -1,7 +1,5 @@
 <script setup>
 import { ref, onMounted } from 'vue'
-// import BackgroundPattern from './BackgroundPattern.vue';
-import ProductCard from './ProductCard.vue';
 
 const isVisible = ref(false)
 
@@ -60,14 +58,14 @@ const products = ref([
   <div class="min-h-screen bg-[#fefef4]">
     <!-- Hero Section -->
     <section class="relative py-24 flex items-center justify-center overflow-hidden">
-      <div class="absolute inset-0 bg-gradient-to-br from-purple-600/90 via-blue-600/80 to-pink-600/90"></div>
+      <div class="absolute inset-0 bg-gradient-to-br from-[#001d3d]/100 via-[#0077b6]/80 to-[#001d3d]/100"></div>
       
       <div class="relative z-10 text-center px-4 max-w-5xl mx-auto" 
            :class="{ 'opacity-100 translate-y-0': isVisible, 'opacity-0 translate-y-10': !isVisible }"
            style="transition: all 1s ease-out">
         <h1 class="text-6xl md:text-7xl font-bold text-white mb-8 leading-tight">
           Bringing You Closer, 
-          <span class="block bg-clip-text text-transparent bg-gradient-to-r from-yellow-200 to-pink-200">
+          <span class="block bg-clip-text text-transparent bg-gradient-to-r from-[#ffec5c] to-[#fff8a5]">
             Even When Signal Fades
           </span>
         </h1>
@@ -77,36 +75,37 @@ const products = ref([
       </div>
     </section>
 
-    <!-- Our Story Section -->
-    <section class="py-20 px-4 bg-white/50">
+    <!-- Our Story  -->
+    <section class="py-20 px-4 bg-[#edf2fb]">
       <div class="max-w-7xl mx-auto">
         <h2 class="text-5xl font-bold text-center mb-12">Our Story</h2>
         <div class="bg-white/80 backdrop-blur-md rounded-3xl shadow-xl p-8 md:p-12">
           <p class="text-xl text-gray-700 leading-relaxed mb-6">
             FestiFriend was born in the heart of the festival scene. It all started when our founders, fellow festival enthusiasts, found themselves in a familiar situation – separated from friends in a sea of people, unable to reconnect due to nonexistent cell service. Surrounded by thousands, they felt isolated, missing out on unforgettable moments and new connections simply because they couldn’t stay in touch. There had to be a better way.
           </p>
-          <p class="text-lg text-gray-700 leading-relaxed">
+          <p class="text-xl text-gray-700 leading-relaxed">
             That’s when the spark for FestiFriend came to life. Our founders envisioned a world where festivals would be about bringing people closer, not losing track of them. A world where you could meet new friends, share your details with a tap, and feel connected no matter how far the music took you.
           </p>
         </div>
       </div>
     </section>
 
-    <!-- About Section -->
-    <section class="py-20 px-4 relative">
+    <!-- About  -->
+    <section class="py-20 px-4 relative bg-[#f5efff]">
       <div class="max-w-7xl mx-auto">
         <div class="bg-white/80 backdrop-blur-md rounded-3xl shadow-2xl p-8 md:p-12">
-          <h2 class="text-5xl font-bold mb-8 text-center">About FestiFriend</h2>
-          <div class="space-y-12 text-gray-700">
-            <p class="text-xl">
+          <h2 class="text-5xl font-bold mb-8 text-center">About <span class="bg-gradient-to-br from-pink-500 to-orange-500 bg-clip-text text-transparent">FestiFriend</span>
+          </h2>
+          <div class=" text-gray-700">
+            <p class="text-xl leading-relaxed">
               Welcome to FestiFriend! We're here to transform your festival experience by making it easier to connect, 
               communicate, and create memories with the people around you. As a company dedicated to enhancing social 
               connections at festivals and events, we bring innovative technology to help you stay connected, even in 
               the busiest and most remote festival locations.
             </p>
-            <div class="border-l-4 border-purple-500 pl-6 my-8">
-              <h3 class="text-2xl font-bold mb-4">Our Vision</h3>
-              <p class="text-xl">
+            <div class="border-l-4 border-blue-900 pl-6 my-8">
+              <h3 class="text-2xl font-bold mb-4">Our <span class="bg-gradient-to-r from-purple-600 to-blue-600 bg-clip-text text-transparent">Vision</span></h3>
+              <p class="text-xl leading-relaxed">
                 At FestiFriend, we believe that festivals are about more than just music and entertainment – they're 
                 about the people you meet and the connections you make. Our products are designed to foster meaningful 
                 connections, enabling you to share, remember, and relive your festival journey long after the music stops.
@@ -126,7 +125,7 @@ const products = ref([
                class="group relative bg-white rounded-2xl shadow-xl p-8 transform transition-all duration-300 hover:-translate-y-2">
             <div class="absolute inset-0 rounded-2xl bg-gradient-to-br opacity-0 group-hover:opacity-100 transition-opacity duration-300"
                  :class="[feature.color]"></div>
-            <div class="relative z-10 group-hover:text-white transition-colors duration-300">
+            <div class="relative z-10 group-hover:text-white  duration-300">
               <span class="text-5xl mb-6 block">{{ feature.icon }}</span>
               <h3 class="text-2xl font-bold mb-4">{{ feature.title }}</h3>
               <p class="text-lg opacity-90">{{ feature.description }}</p>
@@ -136,23 +135,36 @@ const products = ref([
       </div>
     </section>
 
-    <!-- Our Products Section -->
+    <!-- Our Products  -->
     <section class="py-20 px-4">
       <div class="max-w-7xl mx-auto">
         <h2 class="text-4xl font-bold text-center mb-16">Our Products</h2>
         <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-          <ProductCard v-for="product in products" 
-                      :key="product.title"
-                      v-bind="product" class="text-xl" />
+          <div v-for="product in products"
+               :key="product.title"
+               class="bg-white/80 backdrop-blur-sm rounded-2xl shadow-xl p-8 transform transition-all duration-300 hover:-translate-y-2">
+            <div class="text-4xl mb-6">{{ product.icon }}</div>
+            <h3 class="text-2xl font-bold mb-4 text-purple-600">{{ product.title }}</h3>
+            <p class="text-xl text-gray-700 mb-6">{{ product.description }}</p>
+            <ul class="space-y-3">
+              <li v-for="(feature, index) in product.features" 
+                  :key="index" 
+                  class="flex items-start">
+                <span class="text-purple-500 mr-2">✦</span>
+                <span class="text-lg text-gray-600">{{ feature }}</span>
+              </li>
+            </ul>
+          </div>
         </div>
       </div>
     </section>
 
-    <!-- From Us to You Section -->
+    <!-- From Us to You -->
     <section class="py-20 px-4 bg-gradient-to-br from-purple-50 to-blue-50">
       <div class="max-w-4xl mx-auto text-center">
-        <h2 class="text-4xl font-bold mb-12 bg-gradient-to-r from-purple-600 to-blue-600 bg-clip-text text-transparent">
-          From Us to You
+        <h2 class="text-4xl font-bold mb-12 ">
+          From <span class="bg-gradient-to-r from-purple-600 to-blue-600 bg-clip-text text-transparent">Us</span> to 
+          <span class="bg-gradient-to-br from-pink-500 to-orange-500 bg-clip-text text-transparent">You</span>
         </h2>
         <div class="bg-white/80 backdrop-blur-sm rounded-3xl shadow-xl p-8 md:p-12">
           <p class="text-xl text-gray-700 leading-relaxed">
@@ -166,7 +178,7 @@ const products = ref([
     </section>
 
     <!-- App Download Section -->
-    <section class="py-20 px-4 bg-gradient-to-br from-purple-600 via-blue-600 to-pink-600">
+    <section class="py-20 px-4 bg-gradient-to-br from-[#001d3d]/100 via-[#0077b6]/80 to-[#001d3d]/100">
       <div class="max-w-5xl mx-auto text-center text-white relative z-10">
         <h2 class="text-4xl md:text-5xl font-bold mb-8">Ready to Transform Your Festival Experience?</h2>
         <p class="text-xl mb-12 text-white/90 max-w-2xl mx-auto">
@@ -174,8 +186,8 @@ const products = ref([
         </p>
         
         <div class="flex flex-wrap justify-center gap-6">
-          <a href="#" 
-             class="group flex items-center gap-3 bg-white text-purple-600 px-8 py-4 rounded-full font-semibold transition-all transform hover:scale-105 hover:shadow-lg">
+          <a href="https://apps.apple.com/us/app/festi-friend-kandi-app/id6501969006" target="_blank"
+             class="group flex items-center gap-3 bg-white text-black px-8 py-4 rounded-full font-semibold transition-all transform hover:scale-105 hover:shadow-lg">
             <!-- <span class="text-2xl transition-transform group-hover:-translate-y-0.5">📱</span> -->
             <span class="transition-transform group-hover:-translate-y-0.5">Download on App Store</span>
           </a>
