@@ -10,7 +10,14 @@ export const useAuthStore = defineStore('auth', () => {
       firstName: 'Noah',
       lastName: 'Gary',
       email: 'Noahgary@gmail.com',
-      password: 'Noah@123',
+      password: 'noah@123',
+    },
+    {
+      id: 2,
+      firstName: 'Shrushti',
+      lastName: 'Desai',
+      email: 'Shrushti@gmail.com',
+      password: 'shrushti@456',
     },
   ])
   const isLoggedIn = ref(false)
