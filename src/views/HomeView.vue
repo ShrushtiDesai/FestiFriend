@@ -1,6 +1,11 @@
 <script setup>
 import Button from '@/components/ui/button/Button.vue'
 import { ref } from 'vue'
+import {
+    Card,
+    CardContent,
+    CardHeader,
+  } from '@/components/ui/card'
 
 import BlueKandi from '@/assets/images/Products/BlueKandi/BlueKandi1.jpg'
 import PinkKandi from '@/assets/images/Products/PinkKandi/PinkKandi1.webp'
@@ -9,16 +14,18 @@ import MeshCommunicator from '@/assets/images/Products/MeshCom/MeshCommunicator1
 const featuredProducts = [
   {
     id: 1,
-    name: 'Pink Sparkle WristBand',
+    name: 'Pink Sparkle Kandi',
     price: 10.00,
     image: PinkKandi,
+    category: 'Kandi Bracelet',
     tag: 'Best Seller'
   },
   {
     id: 2,
-    name: 'Mesh Communicator',
+    name: 'FestiFriend Communicator',
     price: 99.99,
     image: MeshCommunicator,
+    category: 'Mesh Communicator',
     tag: 'New'
   },
   {
@@ -26,6 +33,7 @@ const featuredProducts = [
     name: 'Amethyst Purple Kandi',
     price: 10.00,
     image: BlueKandi,
+    category: 'Kandi Bracelet',
     tag: 'Popular'
   }
 ]
@@ -33,51 +41,51 @@ const featuredProducts = [
 const emailAddress = ref('')
 
 const handleNewsletterSubmit = () => {
-  // Handle newsletter submission
   console.log('Newsletter subscription:', emailAddress.value)
   emailAddress.value = ''
 }
 </script>
 
 <template>
-  <section class="banner relative text-center text-white bg-black">
+  <!-- Hero Banner Section -->
+  <section class="relative h-[250px] sm:h-[300px] md:h-[400px] w-full bg-black text-center text-white overflow-hidden">
     <img 
       src="@/assets/images/pages/hero-banner.jpg" 
-      class="w-full h-full object-cover opacity-[0.5]"
+      class="absolute inset-0 w-full h-full object-cover opacity-50"
       alt="Festival banner"
     >
-    <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-full px-4">
-      <h1 class="banner-text font-bold">
+    <div class="absolute inset-0 flex items-center justify-center px-4">
+      <h1 class="text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-bold max-w-6xl">
         Forge New lasting Friendships at Festivals!
       </h1>
     </div>
   </section>
 
-  <div class="hero-section bg-[#e8e0ce] pb-0 px-4 justify-between md:px-0 lg:px-10 xl:px-20">
-    <section class="container pt-8 pb-0">
+  <!-- Main Hero Section -->
+  <div class="bg-gradient-to-tr from-amber-50 via-red-100 to-amber-200 px-4 md:px-8 lg:px-16 xl:px-24">
+    <section class="container mx-auto pt-8">
       <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
-        <!-- Left Content -->
         <div class="space-y-6">
-          <h1 class="text-2xl md:text-4xl lg:text-6xl font-bold leading-tight">
+          <h1 class="text-3xl md:text-4xl lg:text-6xl font-bold leading-tight text-gray-900">
             Spark New Connections at Every Festival!
           </h1>
-          <h3 class="text-xl md:text-2xl">Share Your Moments with <span class="text-[#ff55a3]">#FestiFriend!</span></h3>
+          <h3 class="text-xl md:text-2xl text-gray-800">
+            Share Your Moments with <span class="text-pink-500">#FestiFriend!</span>
+          </h3>
           <p class="text-base md:text-lg text-gray-600">
             Discover our unique collection of festival accessories that help you make lasting connections.
           </p>
           <RouterLink to="/shop">
-            <Button size="lg" class="text-lg px-8 bg-[#ff9900] py-6 my-8 hover:bg-[#fdb01a]">
-              Shop Now  >
+            <Button size="lg" class="text-lg px-8 mt-4 bg-gradient-to-t from-blue-500 to-cyan-500 hover:opacity-75 text-white py-6">
+              Shop Now →
             </Button>
           </RouterLink>
         </div>
-        
-        <!-- Right Image -->
-        <div class="w-full h-full flex">
+        <div class="w-full">
           <img 
             src="@/assets/images/pages/Hero-section.png" 
             alt="Hero image"
-            class="w-full h-auto transform"
+            class="w-full h-auto object-contain "
           >
         </div>
       </div>
@@ -85,129 +93,90 @@ const handleNewsletterSubmit = () => {
   </div>
 
   <!-- Promotional Banner -->
-  <section class="bg-[#75574e] text-white py-12">
-      <div class="container mx-auto px-4 text-center">
-        <h2 class="text-3xl font-bold mb-4">Special Offer!</h2>
-        <p class="text-xl mb-6">
-          Get 30% Off on Mesh Communicator. Plus Pay in 4 interest-free installments for orders over $50.
-        </p>
-        <div class="flex flex-wrap justify-center gap-4">
-          <div class="bg-white/10 backdrop-blur-sm rounded-lg p-4">
-            <h3 class="font-bold text-2xl">30% OFF</h3>
-            <p>On Mesh Communicator</p>
-          </div>
-          <div class="bg-white/10 backdrop-blur-sm rounded-lg p-4">
-            <h3 class="font-bold text-2xl">4 Payments</h3>
-            <p>Interest-free with Shop Pay</p>
-          </div>
-          <div class="bg-white/10 backdrop-blur-sm rounded-lg p-4">
-            <h3 class="font-bold text-2xl">Free Shipping</h3>
-            <p>On orders over $50</p>
-          </div>
+  <section class="bg-gradient-to-b from-fuchsia-400 to-purple-700 text-white py-12">
+    <div class="container mx-auto px-4 text-center">
+      <h2 class="text-2xl md:text-3xl font-bold mb-6">Special Offer!</h2>
+      <p class="text-lg md:text-xl mb-8">
+        Get 30% Off on Mesh Communicator. Plus Pay in 4 interest-free installments for orders over $50.
+      </p>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-4xl mx-auto mb-8">
+        <div class="bg-white/10 backdrop-blur-sm rounded-lg p-6 hover:bg-white/20 transition-colors">
+          <h3 class="font-bold text-2xl mb-2">30% OFF</h3>
+          <p>On Mesh Communicator</p>
         </div>
-        <RouterLink to="/shop" class="justify-center">
-            <Button size="lg" class="text-lg px-8 align-center bg-[#ff9900] py-8 my-6 hover:bg-[#fdb01a]">
-            Explore Offers > 
-          </Button>
-          </RouterLink>
-      </div>
-    </section>
-
-        <!-- Featured Products -->
-    <section class="bg-[#f0e4c0] py-16">
-      <div class="container mx-auto px-4">
-        <h2 class="text-3xl font-bold text-center">Featured Products</h2>
-        <p class="text-xl text-[gray] text-center mb-12">Our Bestselling, popular and new Arrivals!</p>
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 cursor-pointer">
-          <div v-for="product in featuredProducts" :key="product.id" 
-               class="bg-[#f6f4ec] rounded-lg shadow-md p-4 overflow-hidden transition-transform hover:scale-105">
-            <div class="relative">
-              <img :src="product.image" :alt="product.name" class="w-full h-64 object-cover rounded-lg">
-              <span class="absolute top-4 right-4 bg-[#28293d] text-white px-3 py-1 rounded-full text-sm">
-                {{ product.tag }}
-              </span>
-            </div>
-            <div class="p-6">
-              <h3 class="text-xl font-semibold mb-2">{{ product.name }}</h3>
-              <p class="text-gray-600 mb-4">${{ product.price }}</p>
-              <Button class="w-full">Add to Cart</Button>
-            </div>
-          </div>
+        <div class="bg-white/10 backdrop-blur-sm rounded-lg p-6 hover:bg-white/20 transition-colors">
+          <h3 class="font-bold text-2xl mb-2">4 Payments</h3>
+          <p>Interest-free with Shop Pay</p>
+        </div>
+        <div class="bg-white/10 backdrop-blur-sm rounded-lg p-6 hover:bg-white/20 transition-colors">
+          <h3 class="font-bold text-2xl mb-2">Free Shipping</h3>
+          <p>On orders over $50</p>
         </div>
       </div>
-    </section>
+      <RouterLink to="/shop">
+        <Button size="lg" class="text-lg px-8 bg-gradient-to-t from-pink-500 to-rose-500 hover:opacity-75 text-white py-6">
+          Explore Offers →
+        </Button>
+      </RouterLink>
+    </div>
+  </section>
 
-      <!-- Newsletter Section -->
-  <section class="newsletter-section bg-[#001f3f] py-16 px-4 md:px-8 lg:px-16">
-    <div class="container mx-auto">
-      <div class="flex flex-col md:flex-row justify-between items-center gap-6">
-        <div class="text-white">
-          <h2 class="text-2xl md:text-3xl font-bold mb-2">Sign Up For Newsletters</h2>
+  <!-- Featured Products -->
+  <section class="bg-gradient-to-b from-teal-100 via-cyan-200 to-indigo-200 py-16">
+    <div class="max-w-7xl container mx-auto px-4">
+      <h2 class="text-2xl md:text-3xl font-bold text-center mb-4">Featured Products</h2>
+      <p class="text-lg md:text-xl text-gray-600 text-center mb-12">
+        Our Bestselling, popular and new Arrivals!
+      </p>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 ">
+        <div v-for="product in featuredProducts" :key="product.id" 
+             class="bg-white p-3 rounded-xl shadow-lg cursor-pointer overflow-hidden transform transition-all duration-300 hover:scale-105 hover:shadow-xl">
+          <div class="relative">
+            <img :src="product.image" :alt="product.name" class="w-full rounded-xl h-64 object-cover">
+            <span class="absolute top-4 right-4 bg-gray-900 text-white px-4 py-1 rounded-full text-sm font-medium">
+              {{ product.tag }}
+            </span>
+          </div>
+          <div class="p-4">
+            <span class="text-gray-500 mb-2 rounded-full text-sm font-medium">{{ product.category }}</span>
+            <h3 class="text-xl font-bold mb-1 text-gray-900">{{ product.name }}</h3>
+            <p class="text-[#2a9d8f] font-bold text-lg mt-0 mb-2">${{ product.price.toFixed(2) }}</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Newsletter Section -->
+  <section class="bg-gradient-to-r from-blue-950 to-blue-900 py-16 px-4">
+    <div class="container mx-auto max-w-6xl">
+      <div class="flex flex-col md:flex-row justify-between items-center gap-8">
+        <div class="text-center md:text-left">
+          <h2 class="text-2xl md:text-3xl font-bold text-white mb-3">Sign Up For Newsletters</h2>
           <p class="text-gray-300">
             Get E-mail updates about our latest shop and 
-            <span class="text-[#ffd700]">special offers.</span>
+            <span class="text-yellow-400">special offers.</span>
           </p>
         </div>
-        
         <form @submit.prevent="handleNewsletterSubmit" 
-              class="w-full md:w-auto flex flex-col sm:flex-row gap-5">
+              class="w-full md:w-auto flex flex-col sm:flex-row gap-4">
           <input 
             type="email" 
             v-model="emailAddress"
             placeholder="Your email address" 
             required
-            class="flex-grow px-4 py-3 rounded-md border-none focus:ring-2 focus:ring-teal-500 min-w-[300px] lg:min-w-[400px]"
+            class="flex-grow px-4 py-3 rounded-lg border-2 border-transparent focus:border-teal-500 focus:ring-0 min-w-[280px] sm:min-w-[320px] lg:min-w-[400px]"
           />
-          <button 
+          <Button 
             type="submit"
-            class="px-6 py-3 bg-teal-600 text-white rounded-md hover:bg-teal-700 transition-colors duration-300 whitespace-nowrap"
+            class="px-6 py-7 bg-teal-600 hover:bg-teal-500 text-white rounded-lg transition-colors duration-300 whitespace-nowrap"
           >
             Sign Up
-          </button>
+          </Button>
         </form>
       </div>
     </div>
   </section>
 </template>
-
-<style scoped>
-
-.banner {
-  height: 400px;
-  z-index: -1;
-}
-
-.banner-text {
-  font-size: 70px;
-  line-height: 1.2;
-}
-
-/* Large devices (laptops/desktops) */
-@media (max-width: 1024px) {
-  .banner-text {
-    font-size: 60px;
-  }
-}
-
-/* Medium devices (tablets) */
-@media (max-width: 768px) {
-  .banner {
-    height: 300px;
-  }
-  
-  .banner-text {
-    font-size: 40px;
-  }
-}
-
-/* Small devices (mobile phones) */
-@media (max-width: 480px) {
-  .banner {
-    height: 250px;
-  }
-  
-  .banner-text {
-    font-size: 28px;
-  }
-}
-</style>

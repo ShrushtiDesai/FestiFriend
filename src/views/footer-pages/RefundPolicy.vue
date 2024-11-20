@@ -3,9 +3,9 @@ import { RotateCcw, PackageCheck, CreditCard, RefreshCw, Truck, MessageCircle, M
 </script>
 
 <template>
-  <div class="min-h-screen bg-[#f6f4ec] from-background to-secondary/20 py-12 px-4 sm:px-6 lg:px-8">
+  <div class="min-h-screen bg-[#f6fff8] py-12 px-4 sm:px-6 lg:px-8">
     <div class="max-w-[1200px] mx-auto bg-[#f6f4ec] rounded-xl shadow-lg overflow-hidden">
-      <div class="bg-primary/5 p-6 sm:p-8">
+      <div class="bg-violet-100 p-6 sm:p-8">
         <div class="flex items-center gap-3 mb-6">
           <RotateCcw class="h-6 w-6 text-primary" />
           <h1 class="text-2xl sm:text-3xl font-bold text-primary">Return & Refund Policy</h1>
@@ -13,7 +13,7 @@ import { RotateCcw, PackageCheck, CreditCard, RefreshCw, Truck, MessageCircle, M
         <p class="text-muted-foreground">Thank you for shopping at FestiFriend. If you are not entirely satisfied with your purchase, we're here to help.</p>
       </div>
       
-      <div class="p-6 sm:p-8 space-y-8">
+      <div class="bg-gradient-to-t from-red-100 to-violet-50 p-6 sm:p-8 space-y-8">
         <section>
           <h2 class="text-xl font-semibold mb-4 flex items-center gap-2">
             <PackageCheck class="h-5 w-5 text-primary" />

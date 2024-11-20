@@ -189,7 +189,7 @@ const products = ref([
           <a href="https://apps.apple.com/us/app/festi-friend-kandi-app/id6501969006" target="_blank"
              class="group flex items-center gap-3 bg-white text-black px-8 py-4 rounded-full font-semibold transition-all transform hover:scale-105 hover:shadow-lg">
             <!-- <span class="text-2xl transition-transform group-hover:-translate-y-0.5">📱</span> -->
-            <span class="transition-transform group-hover:-translate-y-0.5">Download on iOS Store</span>
+            <span class="transition-transform group-hover:-translate-y-0.5">Download on App Store</span>
           </a>
         </div>
       </div>

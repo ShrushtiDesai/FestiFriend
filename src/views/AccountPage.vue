@@ -1,94 +1,93 @@
 <script setup>
-import { ref, computed } from 'vue'
-import { useAuthStore } from '@/stores/auth'
-import { useForm } from 'vee-validate'
-import { toTypedSchema } from '@vee-validate/zod'
-import * as z from 'zod'
-import Button from '@/components/ui/button/Button.vue'
-import {
-  Form,
-  FormControl,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from '@/components/ui/form'
-import { Input } from '@/components/ui/input'
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
-import { Pencil } from 'lucide-vue-next'
+  import { ref, computed } from 'vue'
+  import { useAuthStore } from '@/stores/auth'
+  import { useForm } from 'vee-validate'
+  import { toTypedSchema } from '@vee-validate/zod'
+  import * as z from 'zod'
+  import Button from '@/components/ui/button/Button.vue'
+  import {
+    Form,
+    FormControl,
+    FormField,
+    FormItem,
+    FormLabel,
+    FormMessage,
+  } from '@/components/ui/form'
+  import { Input } from '@/components/ui/input'
+  import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 
-const formSchema = toTypedSchema(z.object({
-  firstName: z.string().min(2, 'First name must be at least 2 characters'),
-  lastName: z.string().min(2, 'Last name must be at least 2 characters'),
-  email: z.string().email('Invalid email address'),
-}))
-
-const passwordFormSchema = toTypedSchema(z.object({
-  currentPassword: z.string().min(6, 'Password must be at least 6 characters'),
-  newPassword: z.string().min(6, 'Password must be at least 6 characters'),
-  confirmPassword: z.string()
-}).refine(data => data.newPassword === data.confirmPassword, {
-  message: "Passwords don't match",
-  path: ["confirmPassword"]
-}))
-
-const authStore = useAuthStore()
-const isPasswordEditing = ref(false)
-const editingField = ref(null)
-
-const form = useForm({
-  validationSchema: formSchema,
-  initialValues: computed(() => ({
-    firstName: authStore.currentUser?.firstName || '',
-    lastName: authStore.currentUser?.lastName || '',
-    email: authStore.currentUser?.email || '',
+  const formSchema = toTypedSchema(z.object({
+    firstName: z.string().min(2, 'First name must be at least 2 characters'),
+    lastName: z.string().min(2, 'Last name must be at least 2 characters'),
+    email: z.string().email('Invalid email address'),
   }))
-})
 
-const passwordForm = useForm({
-  validationSchema: passwordFormSchema,
-  initialValues: {
-    currentPassword: '',
-    newPassword: '',
-    confirmPassword: '',
-  },
-})
+  const passwordFormSchema = toTypedSchema(z.object({
+    currentPassword: z.string().min(6, 'Password must be at least 6 characters'),
+    newPassword: z.string().min(6, 'Password must be at least 6 characters'),
+    confirmPassword: z.string()
+  }).refine(data => data.newPassword === data.confirmPassword, {
+    message: "Passwords don't match",
+    path: ["confirmPassword"]
+  }))
 
-const startEditing = (field) => {
-  editingField.value = field
-}
+  const authStore = useAuthStore()
+  const isPasswordEditing = ref(false)
+  const editingField = ref(null)
 
-const cancelEdit = () => {
-  editingField.value = null
-  form.setFieldValue(editingField.value, authStore.currentUser[editingField.value])
-}
+  const form = useForm({
+    validationSchema: formSchema,
+    initialValues: computed(() => ({
+      firstName: authStore.currentUser?.firstName || '',
+      lastName: authStore.currentUser?.lastName || '',
+      email: authStore.currentUser?.email || '',
+    }))
+  })
 
-const saveField = async (field, e) => {
-  if (e) {
-    e.preventDefault()
+  const passwordForm = useForm({
+    validationSchema: passwordFormSchema,
+    initialValues: {
+      currentPassword: '',
+      newPassword: '',
+      confirmPassword: '',
+    },
+  })
+
+  const startEditing = (field) => {
+    editingField.value = field
   }
-  
-  const isValid = await form.validateField(field)
-  if (isValid.valid) {
-    const updates = { [field]: form.values[field] }
-    authStore.updateUser(updates)
+
+  const cancelEdit = () => {
     editingField.value = null
+    form.setFieldValue(editingField.value, authStore.currentUser[editingField.value])
   }
-}
 
-const onPasswordSubmit = async (values, { resetForm }) => {
-  if (values.currentPassword === authStore.currentUser?.password) {
-    await authStore.updateUser({ password: values.newPassword })
-    isPasswordEditing.value = false
-    resetForm()
-  } else {
-    passwordForm.setFieldError('currentPassword', 'Current password is incorrect')
+  const saveField = async (field, e) => {
+    if (e) {
+      e.preventDefault()
+    }
+    
+    const isValid = await form.validateField(field)
+    if (isValid.valid) {
+      const updates = { [field]: form.values[field] }
+      authStore.updateUser(updates)
+      editingField.value = null
+    }
   }
-}
 
-const handleLogout = () => {
-  authStore.logout()
-}
+  const onPasswordSubmit = async (values, { resetForm }) => {
+    if (values.currentPassword === authStore.currentUser?.password) {
+      await authStore.updateUser({ password: values.newPassword })
+      isPasswordEditing.value = false
+      resetForm()
+    } else {
+      passwordForm.setFieldError('currentPassword', 'Current password is incorrect')
+    }
+  }
+
+  const handleLogout = () => {
+    authStore.logout()
+  }
 </script>
 
 <template>
@@ -118,7 +117,7 @@ const handleLogout = () => {
                     size="icon"
                     @click="startEditing('firstName')"
                   >
-                    <Pencil class="h-4 w-4" />
+                    <img src="@\assets\icons\pencil-regular-24.png" class="h-4 w-4" />
                   </Button>
                 </div>
                 <div v-if="editingField === 'firstName'" class="space-y-2">
@@ -147,7 +146,7 @@ const handleLogout = () => {
                     size="icon"
                     @click="startEditing('lastName')"
                   >
-                    <Pencil class="h-4 w-4" />
+                  <img src="@\assets\icons\pencil-regular-24.png" class="h-4 w-4" />
                   </Button>
                 </div>
                 <div v-if="editingField === 'lastName'" class="space-y-2">
@@ -176,7 +175,7 @@ const handleLogout = () => {
                     size="icon"
                     @click="startEditing('email')"
                   >
-                    <Pencil class="h-4 w-4" />
+                  <img src="@\assets\icons\pencil-regular-24.png" class="h-4 w-4" />
                   </Button>
                 </div>
                 <div v-if="editingField === 'email'" class="space-y-2">
