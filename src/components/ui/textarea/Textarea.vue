@@ -25,5 +25,5 @@ const modelValue = useVModel(props, 'modelValue', emits, {
         props.class,
       )
     "
-  />focus:border-blue-500 focus:ring focus:ring-blue-200"
+  />
 </template>

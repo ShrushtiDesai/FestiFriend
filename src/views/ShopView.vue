@@ -88,8 +88,8 @@
 </script>
 
 <template>
-  <body class="mx-auto p-6 my-6 max-w-[1300px]">
-    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+  <div class="bg-[#f6fff8]">
+    <div class="max-w-[1300px] mx-auto my-0 px-6 py-8 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
 
       <Card
         v-for="product in products"
@@ -117,7 +117,7 @@
         </CardContent>
       </Card>
     </div>
-  </body>
+  </div>
 </template>
 
 <script>

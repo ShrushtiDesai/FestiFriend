@@ -150,24 +150,9 @@ const socialLinks = [
   </div>
 </template>
 
-<style>
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+<style scoped>
 
-@layer base {
-  body {
-    @apply bg-gray-50 text-gray-900;
+.social-button {
+  @apply flex items-center gap-3 px-6 py-3 rounded-lg font-medium transition duration-200 hover:scale-[1.01];
   }
-}
-
-@layer components {
-  .input-field {
-    @apply w-full px-4 py-3 rounded-lg border border-gray-200 focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none transition duration-200;
-  }
-  
-  .social-button {
-    @apply flex items-center gap-3 px-6 py-3 rounded-lg font-medium transition duration-200 hover:scale-[1.01];
-  }
-}
 </style>

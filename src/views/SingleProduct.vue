@@ -5,7 +5,8 @@
   import Toaster from '@/components/ui/toast/Toaster.vue';
   import { watchOnce } from '@vueuse/core'
   import { ref } from 'vue';
-  import { useRoute } from 'vue-router';
+  import { useRoute, useRouter } from 'vue-router';
+  import { useAuthStore } from '@/stores/auth';
   import Button from '@/components/ui/button/Button.vue'
   import { useCartStore } from '@/stores/cart';
   import PinkKandi1 from '@/assets/images/Products/PinkKandi/PinkKandi1.webp'
@@ -31,6 +32,8 @@
   import Print3 from '@/assets/images/Products/3DPrint/3DPrint3.webp'
 
   const route = useRoute();
+  const router = useRouter();
+  const authStore = useAuthStore();
   const productId = Number(route.params.id);
   const productName = route.query.name;
 
@@ -125,22 +128,26 @@
   }
 
   const addToCart = () => {
-  const cartItem = {
-    id: product.value.id, 
-    name: product.value.name,
-    price: product.value.price,
-    quantity: quantity.value,
-    image: product.value.images[0]  
-  };
+    if(!(authStore.isLoggedIn)) {
+      router.push('/auth/login');
+      return;
+    }
+    const cartItem = {
+      id: product.value.id, 
+      name: product.value.name,
+      price: product.value.price,
+      quantity: quantity.value,
+      image: product.value.images[0]  
+    };
 
     cartStore.addToCart(cartItem);
-    
+        
     toast({
-    variant: 'success',
-    title: 'Item Added to Cart',
-    description: `${quantity.value} ${product.value.name}(s) have been added to your cart.`,
-  });
-  quantity.value = 1;
+      variant: 'success',
+      title: 'Item Added to Cart',
+      description: `${quantity.value} ${product.value.name}(s) have been added to your cart.`,
+    });
+    quantity.value = 1;
 
     console.log('Cart items after adding:', cartStore.cartItems);
   };

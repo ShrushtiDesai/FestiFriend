@@ -1,40 +1,59 @@
 <script setup lang="ts">
-import { useForm } from 'vee-validate'
-import { toTypedSchema } from '@vee-validate/zod'
-import * as z from 'zod'
-import { Button } from '@/components/ui/button'
-import {
-  FormControl,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from '@/components/ui/form'
-import { Input } from '@/components/ui/input'
+  import { useForm } from 'vee-validate'
+  import { toTypedSchema } from '@vee-validate/zod'
+  import * as z from 'zod'
+  import { Button } from '@/components/ui/button'
+  import {
+    FormControl,
+    FormField,
+    FormItem,
+    FormLabel,
+    FormMessage,
+  } from '@/components/ui/form'
+  import { Input } from '@/components/ui/input'
+  import { useToast } from '@/components/ui/toast';
+  import Toaster from '@/components/ui/toast/Toaster.vue';
+  import { useAuthStore } from '@/stores/auth'
 
-const formSchema = toTypedSchema(z.object({
-  firstName: z.string().min(2, 'First name must be at least 2 characters'),
-  lastName: z.string().min(2, 'Last name must be at least 2 characters'),
-  userEmail: z.string().email('Invalid email address'),
-  password: z.string().min(6, 'Password must be at least 6 characters'),
-  confirmPassword: z.string()
-}).refine((data) => data.password === data.confirmPassword, {
-    message: "Passwords don't match",
-    path: ["confirmPassword"],
+  const authStore = useAuthStore();
+  const  { toast }  = useToast();
+
+  const formSchema = toTypedSchema(z.object({
+    firstName: z.string().min(2, 'First name must be at least 2 characters'),
+    lastName: z.string().min(2, 'Last name must be at least 2 characters'),
+    userEmail: z.string().email('Invalid email address'),
+    password: z.string().min(6, 'Password must be at least 6 characters'),
+    confirmPassword: z.string()
+  }).refine((data) => data.password === data.confirmPassword, {
+      message: "Passwords don't match",
+      path: ["confirmPassword"],
+    })
+  );
+
+  const form = useForm({
+    validationSchema: formSchema,
   })
-);
 
-const form = useForm({
-  validationSchema: formSchema,
-})
+  const onSubmit = form.handleSubmit((values) => {
+    authStore.register({
+      firstName: values.firstName,
+      lastName: values.lastName,
+      email: values.userEmail,
+      password: values.password,
+    })
 
-const onSubmit = form.handleSubmit((values) => {
-  console.log('Form submitted!', values)
-  form.resetForm();
-})
+    toast({
+      variant: 'success',
+      title: 'Registration Successful',
+      description: `Welcome, ${values.firstName}! You have successfully registered.`,
+    })
+
+    form.resetForm()
+  })
 </script>
 
 <template>
+  <Toaster></Toaster>
   <div class=" flex items-center justify-center bg-gradient-to-br bg-[#f6fff8] py-12 px-4 sm:px-6 lg:px-8" >
     <div class="bg-white rounded-2xl shadow-xl p-8 animate-fade-in max-w-xl w-full mx-auto space-y-8">
       <div>

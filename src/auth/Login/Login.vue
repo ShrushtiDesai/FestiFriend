@@ -1,5 +1,5 @@
 <script setup lang="ts">
-  import { useForm } from 'vee-validate'
+  import { useForm, useResetForm } from 'vee-validate'
   import { toTypedSchema } from '@vee-validate/zod'
   import * as z from 'zod'
   import { Button } from '@/components/ui/button'
@@ -11,24 +11,40 @@
     FormMessage,
   } from '@/components/ui/form'
   import { Input } from '@/components/ui/input'
+  import { useToast } from '@/components/ui/toast';
+  import Toaster from '@/components/ui/toast/Toaster.vue';
+  import { useAuthStore } from '@/stores/auth'
+
+  const authStore = useAuthStore();
+  const { toast } = useToast();
 
   const formSchema = toTypedSchema(z.object({
     userEmail: z.string().email('Invalid email address'),
     password: z.string().min(6, 'Password must be at least 6 characters'),
-  }));
+  }))
 
   const form = useForm({
     validationSchema: formSchema,
   })
 
   const onSubmit = form.handleSubmit((values) => {
-    console.log('Form submitted!', values)
+    const success = authStore.login(values.userEmail, values.password)
+    console.log(success);
+
+    if(!success) {
+      toast({
+        variant: 'destructive',
+        title: 'Login Failed',
+        description: 'Invalid email or password.',
+      })
+    }
     form.resetForm();
   })
 </script>
 
 <template>
-  <div class=" bg-gradient-to-br bg-[#f6fff8] py-12 px-4 sm:px-6 lg:px-8">
+  <Toaster></Toaster>
+  <div class=" bg-[#f6fff8] py-12 px-4 sm:px-6 lg:px-8">
     <div class="bg-white w-full rounded-2xl shadow-xl p-8 animate-fade-in max-w-xl mx-auto space-y-8">
       <div>
         <h2 class="mb-6 text-center text-3xl font-bold text-gray-900">
