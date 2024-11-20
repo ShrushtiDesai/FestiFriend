@@ -3,7 +3,9 @@ import { RouterLink } from 'vue-router'
 import { ref } from 'vue';
 import menuIcon from '@/assets/icons/menu-regular-24.png';
 import closeIcon from '@/assets/icons/x-regular-24.png';
+import { useCartStore } from '@/stores/cart';
 
+const cartStore = useCartStore();
 const isSidebarOpen = ref(0);
 // const isSearchClicked = ref(false);
 
@@ -16,7 +18,8 @@ function closeSidebar() {
 }
 // function toggleSearch() {
 //   isSearchClicked.value = !isSearchClicked.value;
-// }
+// }  
+console.log(cartStore.cartItems.length);
 
 </script>
 
@@ -42,7 +45,12 @@ function closeSidebar() {
         <div class="right-section">
             <RouterLink to="/auth/login"><svg  xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: rgba(0, 0, 0, 1);"><path d="M12 2a5 5 0 1 0 5 5 5 5 0 0 0-5-5zm0 8a3 3 0 1 1 3-3 3 3 0 0 1-3 3zm9 11v-1a7 7 0 0 0-7-7h-4a7 7 0 0 0-7 7v1h2v-1a5 5 0 0 1 5-5h4a5 5 0 0 1 5 5v1z"></path></svg>
             </RouterLink>
-            <RouterLink to="/cart"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: rgba(0, 0, 0, 1);"><path d="M21 4H2v2h2.3l3.28 9a3 3 0 0 0 2.82 2H19v-2h-8.6a1 1 0 0 1-.94-.66L9 13h9.28a2 2 0 0 0 1.92-1.45L22 5.27A1 1 0 0 0 21.27 4 .84.84 0 0 0 21 4zm-2.75 7h-10L6.43 6h13.24z"></path><circle cx="10.5" cy="19.5" r="1.5"></circle><circle cx="16.5" cy="19.5" r="1.5"></circle></svg></RouterLink>
+            <div class="flex">
+              <RouterLink to="/cart"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: rgba(0, 0, 0, 1);"><path d="M21 4H2v2h2.3l3.28 9a3 3 0 0 0 2.82 2H19v-2h-8.6a1 1 0 0 1-.94-.66L9 13h9.28a2 2 0 0 0 1.92-1.45L22 5.27A1 1 0 0 0 21.27 4 .84.84 0 0 0 21 4zm-2.75 7h-10L6.43 6h13.24z"></path><circle cx="10.5" cy="19.5" r="1.5"></circle><circle cx="16.5" cy="19.5" r="1.5"></circle></svg>
+              </RouterLink>
+              <div class="count bg-red-500 p-2 text-black text-xs font-bold rounded-full w-5 h-5 flex items-center justify-center">
+              {{ cartStore.totalItems }}  </div>
+            </div>
         </div>
       </nav>
 
@@ -59,9 +67,12 @@ function closeSidebar() {
           </RouterLink>
           <div class="right-section">
     
-            <RouterLink to="/cart">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: rgba(0, 0, 0, 1);"><path d="M21 4H2v2h2.3l3.28 9a3 3 0 0 0 2.82 2H19v-2h-8.6a1 1 0 0 1-.94-.66L9 13h9.28a2 2 0 0 0 1.92-1.45L22 5.27A1 1 0 0 0 21.27 4 .84.84 0 0 0 21 4zm-2.75 7h-10L6.43 6h13.24z"></path><circle cx="10.5" cy="19.5" r="1.5"></circle><circle cx="16.5" cy="19.5" r="1.5"></circle></svg>
-            </RouterLink>
+            <div class="flex">
+              <RouterLink to="/cart"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: rgba(0, 0, 0, 1);"><path d="M21 4H2v2h2.3l3.28 9a3 3 0 0 0 2.82 2H19v-2h-8.6a1 1 0 0 1-.94-.66L9 13h9.28a2 2 0 0 0 1.92-1.45L22 5.27A1 1 0 0 0 21.27 4 .84.84 0 0 0 21 4zm-2.75 7h-10L6.43 6h13.24z"></path><circle cx="10.5" cy="19.5" r="1.5"></circle><circle cx="16.5" cy="19.5" r="1.5"></circle></svg>
+              </RouterLink>
+              <div class="count bg-red-500 p-2 text-black text-xs font-bold rounded-full w-5 h-5 flex items-center justify-center">
+              {{ cartStore.totalItems }}  </div>
+            </div>
           </div>
         </div>
 
@@ -129,6 +140,17 @@ header {
   align-items: center;
   gap: 20px;
 }
+.count {
+  background-color: rgb(235, 228, 228);
+  font-size: 0.75rem; 
+  font-weight: bold; 
+  border-radius: 20%; 
+  width: 25px; 
+  height: 25px; 
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 
 .pagelink {
   font-family: "Inter", sans-serif;
@@ -171,6 +193,7 @@ header {
     display: block;
     width: 100%;
   }
+  
 
   .mobile-nav-container {
     display: flex;
