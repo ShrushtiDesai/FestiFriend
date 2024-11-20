@@ -75,7 +75,7 @@ const products = ref([
       </div>
     </section>
 
-    <!-- Our Story  -->
+    <!--  Story  -->
     <section class="py-20 px-4 bg-[#edf2fb]">
       <div class="max-w-7xl mx-auto">
         <h2 class="text-5xl font-bold text-center mb-12">Our Story</h2>
@@ -116,7 +116,7 @@ const products = ref([
       </div>
     </section>
 
-    <!-- Product Features -->
+    <!--  Features -->
     <section class="py-20 px-4 bg-gradient-to-br from-purple-50 to-blue-50">
       <div class="max-w-7xl mx-auto">
         <h2 class="text-4xl font-bold text-center mb-16">Product Features</h2>
@@ -135,7 +135,7 @@ const products = ref([
       </div>
     </section>
 
-    <!-- Our Products  -->
+    <!--  Products  -->
     <section class="py-20 px-4">
       <div class="max-w-7xl mx-auto">
         <h2 class="text-4xl font-bold text-center mb-16">Our Products</h2>
@@ -177,7 +177,7 @@ const products = ref([
       </div>
     </section>
 
-    <!-- App Download Section -->
+    <!-- App Download  -->
     <section class="py-20 px-4 bg-gradient-to-br from-[#001d3d]/100 via-[#0077b6]/80 to-[#001d3d]/100">
       <div class="max-w-5xl mx-auto text-center text-white relative z-10">
         <h2 class="text-4xl md:text-5xl font-bold mb-8">Ready to Transform Your Festival Experience?</h2>

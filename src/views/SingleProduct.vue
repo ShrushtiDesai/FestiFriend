@@ -175,7 +175,7 @@
   <Toaster></Toaster>
   <div class="product-page flex flex-col bg-[#f6fff8]" v-if="product">
     <div class="top-div flex flex-wrap max-w-[1300px] mx-auto p-6">
-      <!-- Left side - Image Gallery -->
+      <!-- Left side - Image  -->
       <div class="top-div-left flex-1 min-w-[320px]">
         <div class="w-full sm:w-auto">
           <!-- Main Carousel -->

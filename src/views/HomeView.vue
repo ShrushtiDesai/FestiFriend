@@ -149,7 +149,7 @@ const handleNewsletterSubmit = () => {
     </div>
   </section>
 
-  <!-- Newsletter Section -->
+  <!-- Newsletter  -->
   <section class="bg-gradient-to-r from-blue-950 to-blue-900 py-16 px-4">
     <div class="container mx-auto max-w-6xl">
       <div class="flex flex-col md:flex-row justify-between items-center gap-8">

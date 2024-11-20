@@ -75,7 +75,7 @@ const socialLinks = [
       </div>
 
       <div class="grid lg:grid-cols-2 gap-12 items-start">
-        <!-- Contact Form -->
+
         <div class="bg-white rounded-2xl shadow-xl p-8 animate-fade-in">
           <h2 class="text-2xl font-bold text-gray-900 mb-6">Send us a Message</h2>
           <form @submit="onSubmit" class="space-y-6">

@@ -19,7 +19,6 @@ import { Shield, Info, Database, FileText, Lock, Link, Users, FileEdit, Mail } f
 
       <!-- Content -->
       <div class="bg-gradient-to-t from-red-100 to-violet-50 p-6 sm:p-8 space-y-8">
-        <!-- Introduction -->
         <section class="mb-8">
           <h2 class="text-xl font-semibold mb-4 flex items-center gap-2">
             <Info class="h-5 w-5 text-primary" />
@@ -33,7 +32,6 @@ import { Shield, Info, Database, FileText, Lock, Link, Users, FileEdit, Mail } f
           </div>
         </section>
 
-        <!-- Information Collection -->
         <section class="mb-8">
           <h2 class="text-xl font-semibold mb-4 flex items-center gap-2">
             <Database class="h-5 w-5 text-primary" />
@@ -52,7 +50,6 @@ import { Shield, Info, Database, FileText, Lock, Link, Users, FileEdit, Mail } f
           </div>
         </section>
 
-        <!-- Log Data -->
         <section class="mb-8">
           <h2 class="text-xl font-semibold mb-4 flex items-center gap-2">
             <FileText class="h-5 w-5 text-primary" />
@@ -72,7 +69,6 @@ import { Shield, Info, Database, FileText, Lock, Link, Users, FileEdit, Mail } f
           </div>
         </section>
 
-        <!-- Security -->
         <section class="mb-8">
           <h2 class="text-xl font-semibold mb-4 flex items-center gap-2">
             <Lock class="h-5 w-5 text-primary" />
@@ -88,7 +84,6 @@ import { Shield, Info, Database, FileText, Lock, Link, Users, FileEdit, Mail } f
           </div>
         </section>
 
-        <!-- Links -->
         <section class="mb-8">
           <h2 class="text-xl font-semibold mb-4 flex items-center gap-2">
             <Link class="h-5 w-5 text-primary" />
@@ -99,7 +94,6 @@ import { Shield, Info, Database, FileText, Lock, Link, Users, FileEdit, Mail } f
           </div>
         </section>
 
-        <!-- Children's Privacy -->
         <section class="mb-8">
           <h2 class="text-xl font-semibold mb-4 flex items-center gap-2">
             <Users class="h-5 w-5 text-primary" />
@@ -113,7 +107,6 @@ import { Shield, Info, Database, FileText, Lock, Link, Users, FileEdit, Mail } f
           </div>
         </section>
 
-        <!-- Changes -->
         <section class="mb-8">
           <h2 class="text-xl font-semibold mb-4 flex items-center gap-2">
             <FileEdit class="h-5 w-5 text-primary" />
@@ -128,7 +121,6 @@ import { Shield, Info, Database, FileText, Lock, Link, Users, FileEdit, Mail } f
           </div>
         </section>
 
-        <!-- Contact -->
         <section class="mb-8">
           <h2 class="text-xl font-semibold mb-4 flex items-center gap-2">
             <Mail class="h-5 w-5 text-primary" />
